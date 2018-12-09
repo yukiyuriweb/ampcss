@@ -1,0 +1,459 @@
+/**
+ * ----------------------------------------------------------------------
+ * Basscss Type Scale
+ * ----------------------------------------------------------------------
+ */
+
+
+/**
+ * ----------------------------------------------------------------------
+ * Basscss Typography
+ * ----------------------------------------------------------------------
+ */
+
+.font-family-inherit { font-family: inherit }
+.font-size-inherit { font-size: inherit }
+.text-decoration-none { text-decoration: none }
+
+.bold    { font-weight: bold }
+.regular { font-weight: normal }
+// .italic  { font-style: italic }
+
+.left-align   { text-align: left }
+.center       { text-align: center }
+.right-align  { text-align: right }
+.justify      { text-align: justify }
+
+.nowrap { white-space: nowrap }
+.break-word { word-wrap: break-word }
+
+.list-style-none { list-style: none }
+.underline { text-decoration: underline }
+
+.truncate {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.list-reset {
+  list-style: none;
+  padding-left: 0;
+}
+
+
+/**
+ * ----------------------------------------------------------------------
+ * Basscss Layout
+ * ----------------------------------------------------------------------
+ */
+
+.inline       { display: inline }
+.block        { display: block }
+.inline-block { display: inline-block }
+.table        { display: table }
+.table-cell   { display: table-cell }
+
+.overflow-hidden { overflow: hidden }
+.overflow-scroll { overflow: scroll }
+.overflow-auto   { overflow: auto }
+
+// .clearfix:before,
+// .clearfix:after {
+//   content: " ";
+//   display: table
+// }
+// .clearfix:after { clear: both }
+
+.left  { float: left }
+.right { float: right }
+
+.border-box { box-sizing: border-box }
+
+/* Custom Selectors */
+
+.fit-width { width: 100% }
+.fit-height { height: 100% }
+.auto-width { width: auto }
+.auto-height { height: auto }
+.cover-width { min-width: 100% }
+.cover-height { min-height: 100% }
+.contain-width { max-width: 100% }
+.contain-height { max-height: 100% }
+
+
+/**
+ * ----------------------------------------------------------------------
+ * Basscss Align
+ * ----------------------------------------------------------------------
+ */
+
+.align-baseline { vertical-align: baseline }
+.align-top      { vertical-align: top }
+.align-middle   { vertical-align: middle }
+.align-bottom   { vertical-align: bottom }
+
+
+/**
+ * ----------------------------------------------------------------------
+ * Basscss Margin / Padding
+ * ----------------------------------------------------------------------
+ */
+
+@each $i, $value in $margin-padding-values {
+  .m#{$i}  { margin:         $value }
+  .mt#{$i} { margin-top:     $value }
+  .mr#{$i} { margin-right:   $value }
+  .mb#{$i} { margin-bottom:  $value }
+  .ml#{$i} { margin-left:    $value }
+  .mx#{$i} { margin-right:   $value; margin-left:   $value }
+  .my#{$i} { margin-top:     $value; margin-bottom: $value }
+  .p#{$i}  { padding:        $value }
+  .pt#{$i} { padding-top:    $value }
+  .pr#{$i} { padding-right:  $value }
+  .pb#{$i} { padding-bottom: $value }
+  .pl#{$i} { padding-left:   $value }
+  .px#{$i} { padding-right:  $value; padding-left:   $value }
+  .py#{$i} { padding-top:    $value; padding-bottom: $value }
+  .mxn#{$i} { margin-left: calc($value * -1); margin-right: calc($value * -1); }
+}
+
+.m-auto  { margin: auto; }
+.mt-auto { margin-top: auto }
+.mr-auto { margin-right: auto }
+.mb-auto { margin-bottom: auto }
+.ml-auto { margin-left: auto }
+.mx-auto { margin-left: auto; margin-right: auto; }
+.my-auto { margin-top: auto; margin-bottom: auto; }
+
+
+/**
+ * ----------------------------------------------------------------------
+ * Basscss Grid
+ * ----------------------------------------------------------------------
+ */
+
+.col {
+  float: left;
+  box-sizing: border-box;
+}
+
+.col-right {
+  float: right;
+  box-sizing: border-box;
+}
+
+@for $i from 1 through $columns {
+  .col-#{$i} { width: ($i / $columns * 100%) }
+}
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  > * {
+    // @extend .flex;
+    // flex: none;
+    width: 100%;
+  }
+}
+
+@for $i from 2 through 5 {
+  $step: 10;
+  .grid-mx#{$i * $step} {
+    margin-left: -#{$i * $step}px;
+    > * {
+      padding-left: #{$i * $step}px;
+    }
+  }
+  .grid-my#{$i * $step} {
+    > * {
+      &:not(:first-child) {
+        margin-top: #{$i * $step}px;
+      }
+    }
+  }
+}
+
+// 親要素で均等割を指定する場合
+@for $i from 1 through $grids {
+  .grid-1-#{$i} {
+    > * {
+      width: (100% / #{$i});
+    }
+    $selectors: '';
+    @for $j from 1 through $i {
+      $selectors: $selectors + '>*:nth-child(' + $j + '),';
+    }
+    #{$selectors} {
+      margin-top: 0;
+    }
+  }
+}
+
+
+/**
+ * ----------------------------------------------------------------------
+ * Basscss Flexbox
+ * ----------------------------------------------------------------------
+ */
+
+.flex { display: flex }
+.flex-inline { display: inline-flex }
+
+.flex-column  { flex-direction: column }
+.flex-wrap    { flex-wrap: wrap }
+
+.items-start    { align-items: flex-start }
+.items-end      { align-items: flex-end }
+.items-center   { align-items: center }
+.items-baseline { align-items: baseline }
+.items-stretch  { align-items: stretch }
+
+.self-start    { align-self: flex-start }
+.self-end      { align-self: flex-end }
+.self-center   { align-self: center }
+.self-baseline { align-self: baseline }
+.self-stretch  { align-self: stretch }
+
+.justify-start   { justify-content: flex-start }
+.justify-end     { justify-content: flex-end }
+.justify-center  { justify-content: center }
+.justify-between { justify-content: space-between }
+.justify-around  { justify-content: space-around }
+.justify-evenly  { justify-content: space-evenly }
+
+.content-start   { align-content: flex-start }
+.content-end     { align-content: flex-end }
+.content-center  { align-content: center }
+.content-between { align-content: space-between }
+.content-around  { align-content: space-around }
+.content-stretch { align-content: stretch }
+
+/* 1. Fix for Chrome 44 bug. https://code.google.com/p/chromium/issues/detail?id=506893 */
+.flex-auto {
+  flex: 1 1 auto;
+  min-width: 0; /* 1 */
+  min-height: 0; /* 1 */
+}
+.flex-none { flex: none }
+
+.order-0 { order: 0 }
+.order-1 { order: 1 }
+.order-2 { order: 2 }
+.order-3 { order: 3 }
+.order-last { order: 99999 }
+
+/** Custom selectors */
+.flex-row { flex-direction: row }
+.flex-row-reverse    { flex-direction: row-reverse }
+.flex-column-reverse { flex-direction: column-reverse }
+.shrink-0 { flex-shrink: 0 }
+
+
+/**
+ * ----------------------------------------------------------------------
+ * Basscss Position
+ * ----------------------------------------------------------------------
+ */
+
+.relative { position: relative }
+.absolute { position: absolute }
+.fixed    { position: fixed }
+
+.top-0    { top: 0 }
+.right-0  { right: 0 }
+.bottom-0 { bottom: 0 }
+.left-0   { left: 0 }
+
+/** Custom selectors */
+@for $i from 1 through 10 {
+  .z#{$i} { z-index: $i }
+}
+.zn1 { z-index: -1 }
+
+
+/**
+ * ----------------------------------------------------------------------
+ * Basscss Border
+ * ----------------------------------------------------------------------
+ */
+
+.border-none { border: 0 }
+
+.circle  { border-radius: 50% }
+
+
+/**
+ * ----------------------------------------------------------------------
+ * Basscss Hide
+ * ----------------------------------------------------------------------
+ */
+
+.hide {
+  position: absolute;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+}
+
+.display-none { display: none }
+
+
+/**
+ * ----------------------------------------------------------------------
+ * Custom Media Queries
+ * ----------------------------------------------------------------------
+ */
+
+@each $suffix, $break-point in $break-points {
+  @media (min-width: breakpoint($suffix)) {
+
+    /**
+     * Flexbox
+     */
+    .flex\@#{$suffix} { display: flex }
+    .flex-inline\@#{$suffix} { display: inline-flex }
+
+    .flex-row\@#{$suffix}            { flex-direction: row }
+    .flex-row-reverse\@#{$suffix}    { flex-direction: row-reverse }
+    .flex-column\@#{$suffix}         { flex-direction: column }
+    .flex-column-reverse\@#{$suffix} { flex-direction: column-reverse }
+    .flex-wrap\@#{$suffix}           { flex-wrap: wrap }
+
+    .items-start\@#{$suffix}    { align-items: flex-start }
+    .items-end\@#{$suffix}      { align-items: flex-end }
+    .items-center\@#{$suffix}   { align-items: center }
+    .items-baseline\@#{$suffix} { align-items: baseline }
+    .items-stretch\@#{$suffix}  { align-items: stretch }
+
+    .self-start\@#{$suffix}    { align-self: flex-start }
+    .self-end\@#{$suffix}      { align-self: flex-end }
+    .self-center\@#{$suffix}   { align-self: center }
+    .self-baseline\@#{$suffix} { align-self: baseline }
+    .self-stretch\@#{$suffix}  { align-self: stretch }
+
+    .justify-start\@#{$suffix}   { justify-content: flex-start }
+    .justify-end\@#{$suffix}     { justify-content: flex-end }
+    .justify-center\@#{$suffix}  { justify-content: center }
+    .justify-between\@#{$suffix} { justify-content: space-between }
+    .justify-around\@#{$suffix}  { justify-content: space-around }
+
+    .content-start\@#{$suffix}   { align-content: flex-start }
+    .content-end\@#{$suffix}     { align-content: flex-end }
+    .content-center\@#{$suffix}  { align-content: center }
+    .content-between\@#{$suffix} { align-content: space-between }
+    .content-around\@#{$suffix}  { align-content: space-around }
+    .content-stretch\@#{$suffix} { align-content: stretch }
+
+    /**
+     * Hide
+     */
+    .hide\@#{$suffix} { display: none }
+    .visible\@#{$suffix} { display: block }
+
+    /**
+     * Grid
+     */
+    @for $i from 1 through $columns {
+      .col-#{$i}\@#{$suffix} { width: ($i / $columns * 100%) }
+    }
+
+    @for $i from 2 through 5 {
+      $step: 10;
+      .grid-mx#{$i * $step}\@#{$suffix} {
+        margin-left: -#{$i * $step}px;
+        > * {
+          padding-left: #{$i * $step}px;
+        }
+      }
+      .grid-my#{$i * $step}\@#{$suffix} {
+        > * {
+          &:not(:first-child) {
+            margin-top: #{$i * $step}px;
+          }
+        }
+      }
+    }
+
+    @for $i from 1 through 6 {
+      .grid-1-#{$i}\@#{$suffix} {
+        > * {
+          width: (100% / #{$i});
+        }
+        // /**
+        //  * .grid-1-3\@m>*:nth-child(1){margin-top:0}
+        //  * .grid-1-3\@m>*:nth-child(2){margin-top:0}
+        //  * .grid-1-3\@m>*:nth-child(3){margin-top:0}
+        //  *
+        //  * 下の文字列連結よりもわかりやすいが、ファイルサイズがわずかに増える
+        //  */
+        // @for $j from 1 through $i {
+        //   &:nth-child(#{$j}) {
+        //     margin-top: 0;
+        //   }
+        // }
+        /**
+         * .grid-1-3\@m>*:nth-child(1),
+         * .grid-1-3\@m>*:nth-child(2),
+         * .grid-1-3\@m>*:nth-child(3){margin-top:0}
+         */
+        $selectors: '';
+        @for $j from 1 through $i {
+          $selectors: $selectors + '>*:nth-child(' + $j + '),';
+        }
+        #{$selectors} {
+          margin-top: 0;
+        }
+      }
+    }
+
+    /**
+     * ----------------------------------------------------------------------
+     * Margin / Padding
+     * ----------------------------------------------------------------------
+     */
+    @each $i, $value in $margin-padding-values {
+      .m#{$i}\@#{$suffix}  { margin:         $value }
+      .mt#{$i}\@#{$suffix} { margin-top:     $value }
+      .mr#{$i}\@#{$suffix} { margin-right:   $value }
+      .mb#{$i}\@#{$suffix} { margin-bottom:  $value }
+      .ml#{$i}\@#{$suffix} { margin-left:    $value }
+      .mx#{$i}\@#{$suffix} { margin-right:   $value; margin-left:   $value }
+      .my#{$i}\@#{$suffix} { margin-top:     $value; margin-bottom: $value }
+      .p#{$i}\@#{$suffix}  { padding:        $value }
+      .pt#{$i}\@#{$suffix} { padding-top:    $value }
+      .pr#{$i}\@#{$suffix} { padding-right:  $value }
+      .pb#{$i}\@#{$suffix} { padding-bottom: $value }
+      .pl#{$i}\@#{$suffix} { padding-left:   $value }
+      .px#{$i}\@#{$suffix} { padding-right:  $value; padding-left:   $value }
+      .py#{$i}\@#{$suffix} { padding-top:    $value; padding-bottom: $value }
+    }
+
+    .ml-auto\@#{$suffix} { margin-left:  auto }
+    .mr-auto\@#{$suffix},
+    .mx-auto\@#{$suffix} { margin-right: auto }
+    .mx-auto\@#{$suffix} { margin-left:  auto }
+    .mt-auto\@#{$suffix} { margin-top:  auto }
+    .mb-auto\@#{$suffix},
+    .my-auto\@#{$suffix} { margin-bottom: auto }
+    .my-auto\@#{$suffix} { margin-top:  auto }
+
+  }
+}
+
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: $slide-max-width-l;
+  &.ws {max-width: breakpoint('s')}
+  &.wm {max-width: breakpoint('m')}
+  &.wl {max-width: breakpoint('l')}
+  &.w500 {max-width: 500px}
+  &.w600 {max-width: 600px}
+  &.w700 {max-width: 700px}
+  &.w800 {max-width: 800px}
+  &.w1080 {max-width: 1080px}
+  &.w1280 {max-width: 1280px}
+}

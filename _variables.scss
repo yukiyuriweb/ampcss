@@ -1,0 +1,42 @@
+/**
+ * Break points
+ */
+$break-points: (
+  's':  640px,
+  'm':  960px,
+  'l': 1280px,
+);
+
+/**
+ * Utility function for break points
+ */
+@function breakpoint($key) {
+  @return map-get($break-points, $key);
+}
+
+/**
+ * Margin / Padding values
+ */
+$margin-padding-values: (
+  '0': 0,
+  '1': .5rem,
+  '2': 1rem,
+  '3': 2rem,
+  '4': 4rem,
+  '5': 8rem,
+);
+
+/**
+ * Max width of slides
+ */
+$slide-max-width-l: 1280px;
+
+/**
+ * Columns
+ */
+$columns: 12;
+
+/**
+ * Grids
+ */
+$grids: 4;
