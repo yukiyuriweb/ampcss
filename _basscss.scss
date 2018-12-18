@@ -348,9 +348,9 @@
     .content-stretch\@#{$suffix} { align-content: stretch }
 
     /**
-     * Hide
+     * Visibility
      */
-    .hide\@#{$suffix} { display: none }
+    .hidden\@#{$suffix} { display: none }
     .visible\@#{$suffix} { display: block }
 
     /**
