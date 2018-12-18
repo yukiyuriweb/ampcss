@@ -1,7 +1,7 @@
 {
   "name": "@yukiyuriweb/ampcss",
-  "version": "1.0.2",
-  "repository": "https://github.com/YukiYamashina/ampcss.git",
+  "version": "1.0.3",
+  "repository": "https://github.com/yukiyuriweb/ampcss.git",
   "author": "YUKiYURi WEB <info@yukiyuriweb.com>",
   "license": "MIT",
   "dependencies": {}
