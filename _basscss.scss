@@ -17,7 +17,7 @@
 
 .bold    { font-weight: bold }
 .regular { font-weight: normal }
-// .italic  { font-style: italic }
+.italic  { font-style: italic }
 
 .left-align   { text-align: left }
 .center       { text-align: center }
@@ -59,12 +59,12 @@
 .overflow-scroll { overflow: scroll }
 .overflow-auto   { overflow: auto }
 
-// .clearfix:before,
-// .clearfix:after {
-//   content: " ";
-//   display: table
-// }
-// .clearfix:after { clear: both }
+.clearfix:before,
+.clearfix:after {
+  content: " ";
+  display: table
+}
+.clearfix:after { clear: both }
 
 .left  { float: left }
 .right { float: right }
@@ -107,6 +107,7 @@
   .mr#{$i} { margin-right:   $value }
   .mb#{$i} { margin-bottom:  $value }
   .ml#{$i} { margin-left:    $value }
+  .mln#{$i} { margin-left:    ($value * (-1)) }
   .mx#{$i} { margin-right:   $value; margin-left:   $value }
   .my#{$i} { margin-top:     $value; margin-bottom: $value }
   .p#{$i}  { padding:        $value }
@@ -116,8 +117,23 @@
   .pl#{$i} { padding-left:   $value }
   .px#{$i} { padding-right:  $value; padding-left:   $value }
   .py#{$i} { padding-top:    $value; padding-bottom: $value }
-  .mxn#{$i} { margin-left: calc($value * -1); margin-right: calc($value * -1); }
+  .mxn#{$i} { margin-left: ($value * (-1)); margin-right: ($value * (-1)) }
 }
+
+.m0  { margin:         0 }
+.mt0 { margin-top:     0 }
+.mr0 { margin-right:   0 }
+.mb0 { margin-bottom:  0 }
+.ml0 { margin-left:    0 }
+.mx0 { margin-right:   0; margin-left:   0 }
+.my0 { margin-top:     0; margin-bottom: 0 }
+.p0  { padding:        0 }
+.pt0 { padding-top:    0 }
+.pr0 { padding-right:  0 }
+.pb0 { padding-bottom: 0 }
+.pl0 { padding-left:   0 }
+.px0 { padding-right:  0; padding-left:   0 }
+.py0 { padding-top:    0; padding-bottom: 0 }
 
 .m-auto  { margin: auto; }
 .mt-auto { margin-top: auto }
@@ -148,48 +164,48 @@
   .col-#{$i} { width: ($i / $columns * 100%) }
 }
 
-.grid {
-  display: flex;
-  flex-wrap: wrap;
-  > * {
-    // @extend .flex;
-    // flex: none;
-    width: 100%;
-  }
-}
-
-@for $i from 2 through 5 {
-  $step: 10;
-  .grid-mx#{$i * $step} {
-    margin-left: -#{$i * $step}px;
-    > * {
-      padding-left: #{$i * $step}px;
-    }
-  }
-  .grid-my#{$i * $step} {
-    > * {
-      &:not(:first-child) {
-        margin-top: #{$i * $step}px;
-      }
-    }
-  }
-}
-
-// 親要素で均等割を指定する場合
-@for $i from 1 through $grids {
-  .grid-1-#{$i} {
-    > * {
-      width: (100% / #{$i});
-    }
-    $selectors: '';
-    @for $j from 1 through $i {
-      $selectors: $selectors + '>*:nth-child(' + $j + '),';
-    }
-    #{$selectors} {
-      margin-top: 0;
-    }
-  }
-}
+// .grid {
+//   display: flex;
+//   flex-wrap: wrap;
+//   > * {
+//     // @extend .flex;
+//     // flex: none;
+//     width: 100%;
+//   }
+// }
+//
+// @for $i from 2 through 5 {
+//   $step: 10;
+//   .grid-mx#{$i * $step} {
+//     margin-left: -#{$i * $step}px;
+//     > * {
+//       padding-left: #{$i * $step}px;
+//     }
+//   }
+//   .grid-my#{$i * $step} {
+//     > * {
+//       &:not(:first-child) {
+//         margin-top: #{$i * $step}px;
+//       }
+//     }
+//   }
+// }
+//
+// // 親要素で均等割を指定する場合
+// @for $i from 1 through $grids {
+//   .grid-1-#{$i} {
+//     > * {
+//       width: (100% / #{$i});
+//     }
+//     $selectors: '';
+//     @for $j from 1 through $i {
+//       $selectors: $selectors + '>*:nth-child(' + $j + '),';
+//     }
+//     #{$selectors} {
+//       margin-top: 0;
+//     }
+//   }
+// }
 
 
 /**
@@ -360,54 +376,54 @@
       .col-#{$i}\@#{$suffix} { width: ($i / $columns * 100%) }
     }
 
-    @for $i from 2 through 5 {
-      $step: 10;
-      .grid-mx#{$i * $step}\@#{$suffix} {
-        margin-left: -#{$i * $step}px;
-        > * {
-          padding-left: #{$i * $step}px;
-        }
-      }
-      .grid-my#{$i * $step}\@#{$suffix} {
-        > * {
-          &:not(:first-child) {
-            margin-top: #{$i * $step}px;
-          }
-        }
-      }
-    }
-
-    @for $i from 1 through 6 {
-      .grid-1-#{$i}\@#{$suffix} {
-        > * {
-          width: (100% / #{$i});
-        }
-        // /**
-        //  * .grid-1-3\@m>*:nth-child(1){margin-top:0}
-        //  * .grid-1-3\@m>*:nth-child(2){margin-top:0}
-        //  * .grid-1-3\@m>*:nth-child(3){margin-top:0}
-        //  *
-        //  * 下の文字列連結よりもわかりやすいが、ファイルサイズがわずかに増える
-        //  */
-        // @for $j from 1 through $i {
-        //   &:nth-child(#{$j}) {
-        //     margin-top: 0;
-        //   }
-        // }
-        /**
-         * .grid-1-3\@m>*:nth-child(1),
-         * .grid-1-3\@m>*:nth-child(2),
-         * .grid-1-3\@m>*:nth-child(3){margin-top:0}
-         */
-        $selectors: '';
-        @for $j from 1 through $i {
-          $selectors: $selectors + '>*:nth-child(' + $j + '),';
-        }
-        #{$selectors} {
-          margin-top: 0;
-        }
-      }
-    }
+    // @for $i from 2 through 5 {
+    //   $step: 10;
+    //   .grid-mx#{$i * $step}\@#{$suffix} {
+    //     margin-left: -#{$i * $step}px;
+    //     > * {
+    //       padding-left: #{$i * $step}px;
+    //     }
+    //   }
+    //   .grid-my#{$i * $step}\@#{$suffix} {
+    //     > * {
+    //       &:not(:first-child) {
+    //         margin-top: #{$i * $step}px;
+    //       }
+    //     }
+    //   }
+    // }
+    //
+    // @for $i from 1 through $grids {
+    //   .grid-1-#{$i}\@#{$suffix} {
+    //     > * {
+    //       width: (100% / #{$i});
+    //     }
+    //     // /**
+    //     //  * .grid-1-3\@m>*:nth-child(1){margin-top:0}
+    //     //  * .grid-1-3\@m>*:nth-child(2){margin-top:0}
+    //     //  * .grid-1-3\@m>*:nth-child(3){margin-top:0}
+    //     //  *
+    //     //  * 下の文字列連結よりもわかりやすいが、ファイルサイズがわずかに増える
+    //     //  */
+    //     // @for $j from 1 through $i {
+    //     //   &:nth-child(#{$j}) {
+    //     //     margin-top: 0;
+    //     //   }
+    //     // }
+    //     /**
+    //      * .grid-1-3\@m>*:nth-child(1),
+    //      * .grid-1-3\@m>*:nth-child(2),
+    //      * .grid-1-3\@m>*:nth-child(3){margin-top:0}
+    //      */
+    //     $selectors: '';
+    //     @for $j from 1 through $i {
+    //       $selectors: $selectors + '>*:nth-child(' + $j + '),';
+    //     }
+    //     #{$selectors} {
+    //       margin-top: 0;
+    //     }
+    //   }
+    // }
 
     /**
      * ----------------------------------------------------------------------
@@ -415,21 +431,38 @@
      * ----------------------------------------------------------------------
      */
     @each $i, $value in $margin-padding-values {
-      .m#{$i}\@#{$suffix}  { margin:         $value }
-      .mt#{$i}\@#{$suffix} { margin-top:     $value }
-      .mr#{$i}\@#{$suffix} { margin-right:   $value }
-      .mb#{$i}\@#{$suffix} { margin-bottom:  $value }
-      .ml#{$i}\@#{$suffix} { margin-left:    $value }
-      .mx#{$i}\@#{$suffix} { margin-right:   $value; margin-left:   $value }
-      .my#{$i}\@#{$suffix} { margin-top:     $value; margin-bottom: $value }
-      .p#{$i}\@#{$suffix}  { padding:        $value }
-      .pt#{$i}\@#{$suffix} { padding-top:    $value }
-      .pr#{$i}\@#{$suffix} { padding-right:  $value }
-      .pb#{$i}\@#{$suffix} { padding-bottom: $value }
-      .pl#{$i}\@#{$suffix} { padding-left:   $value }
-      .px#{$i}\@#{$suffix} { padding-right:  $value; padding-left:   $value }
-      .py#{$i}\@#{$suffix} { padding-top:    $value; padding-bottom: $value }
+      .m#{$i}\@#{$suffix}   { margin:         $value }
+      .mt#{$i}\@#{$suffix}  { margin-top:     $value }
+      .mr#{$i}\@#{$suffix}  { margin-right:   $value }
+      .mb#{$i}\@#{$suffix}  { margin-bottom:  $value }
+      .ml#{$i}\@#{$suffix}  { margin-left:    $value }
+      .mln#{$i}\@#{$suffix} { margin-left:    ($value * (-1)) }
+      .mx#{$i}\@#{$suffix}  { margin-right:   $value; margin-left:   $value }
+      .my#{$i}\@#{$suffix}  { margin-top:     $value; margin-bottom: $value }
+      .p#{$i}\@#{$suffix}   { padding:        $value }
+      .pt#{$i}\@#{$suffix}  { padding-top:    $value }
+      .pr#{$i}\@#{$suffix}  { padding-right:  $value }
+      .pb#{$i}\@#{$suffix}  { padding-bottom: $value }
+      .pl#{$i}\@#{$suffix}  { padding-left:   $value }
+      .px#{$i}\@#{$suffix}  { padding-right:  $value; padding-left:   $value }
+      .py#{$i}\@#{$suffix}  { padding-top:    $value; padding-bottom: $value }
+      .mxn#{$i}\@#{$suffix} { margin-left: ($value * (-1)); margin-right: ($value * (-1)) }
     }
+
+    .m0\@#{$suffix}   { margin:         0 }
+    .mt0\@#{$suffix}  { margin-top:     0 }
+    .mr0\@#{$suffix}  { margin-right:   0 }
+    .mb0\@#{$suffix}  { margin-bottom:  0 }
+    .ml0\@#{$suffix}  { margin-left:    0 }
+    .mx0\@#{$suffix}  { margin-right:   0; margin-left:   0 }
+    .my0\@#{$suffix}  { margin-top:     0; margin-bottom: 0 }
+    .p0\@#{$suffix}   { padding:        0 }
+    .pt0\@#{$suffix}  { padding-top:    0 }
+    .pr0\@#{$suffix}  { padding-right:  0 }
+    .pb0\@#{$suffix}  { padding-bottom: 0 }
+    .pl0\@#{$suffix}  { padding-left:   0 }
+    .px0\@#{$suffix}  { padding-right:  0; padding-left:   0 }
+    .py0\@#{$suffix}  { padding-top:    0; padding-bottom: 0 }
 
     .ml-auto\@#{$suffix} { margin-left:  auto }
     .mr-auto\@#{$suffix},

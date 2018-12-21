@@ -18,7 +18,6 @@ $break-points: (
  * Margin / Padding values
  */
 $margin-padding-values: (
-  '0': 0,
   '1': .5rem,
   '2': 1rem,
   '3': 2rem,
@@ -34,9 +33,9 @@ $slide-max-width-l: 1280px;
 /**
  * Columns
  */
-$columns: 24;
+$columns: 12;
 
-/**
- * Grids
- */
-$grids: 4;
+// /**
+//  * Grids
+//  */
+// $grids: 4;
