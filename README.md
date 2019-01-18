@@ -13,8 +13,18 @@ yarn add @yukiyuriweb/ampcss
 
 ## Usage
 
+HTML:
+
+```HTML
+<link rel="stylesheet" href="https://unpkg.com/@yukiyuriweb/ampcss/dist/ampcss.css">
+```
+
+SCSS:
+
 ```css
 @import 'path/to/node_modules/@yukiyuriweb/ampcss/sanitize';
 @import 'path/to/node_modules/@yukiyuriweb/ampcss/variables';
 @import 'path/to/node_modules/@yukiyuriweb/ampcss/basscss';
 ```
+
+You can override `_variables.scss` by importing the scss file before importing `_basscss.scss`.
