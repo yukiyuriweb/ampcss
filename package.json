@@ -1,13 +1,13 @@
 {
   "name": "@yukiyuriweb/ampcss",
-  "version": "3.0.6",
+  "version": "3.0.7",
   "description": "Low-level CSS toolkit for AMP HTML",
   "repository": {
     "type": "git",
     "url": "https://github.com/yukiyuriweb/ampcss"
   },
   "scripts": {
-    "build": "node-sass ampcss.scss dist/ampcss.css --output-style compressed"
+    "build": "sass ampcss.scss dist/ampcss.css --style compressed"
   },
   "author": "YUKiYURi WEB <info@yukiyuriweb.com>",
   "license": "MIT",
@@ -24,6 +24,6 @@
   },
   "homepage": "https://github.com/yukiyuriweb/ampcss",
   "devDependencies": {
-    "node-sass": "^4.11.0"
+    "dart-sass": "^1.22.1"
   }
 }
