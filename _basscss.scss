@@ -327,6 +327,11 @@
 
 @each $suffix, $break-point in $break-points {
   @media (min-width: breakpoint($suffix)) {
+    /**
+     * Visibility
+     */
+    .hidden\@#{$suffix} { display: none }
+    .visible\@#{$suffix} { display: block }
 
     /**
      * Flexbox
@@ -364,12 +369,6 @@
     .content-between\@#{$suffix} { align-content: space-between }
     .content-around\@#{$suffix}  { align-content: space-around }
     .content-stretch\@#{$suffix} { align-content: stretch }
-
-    /**
-     * Visibility
-     */
-    .hidden\@#{$suffix} { display: none }
-    .visible\@#{$suffix} { display: block }
 
     /**
      * Grid
