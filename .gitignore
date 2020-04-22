@@ -16,3 +16,6 @@ bin/
 
 
 __tests__/
+
+# Visual Studio Code
+vs.code-workspace
