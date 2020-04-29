@@ -342,6 +342,11 @@
 @each $suffix, $min_width in $min_widths {
   @media (min-width: min_width($suffix)) {
     /**
+     * Visibility
+     */
+    .hidden\@#{$suffix} { display: none }
+
+    /**
      * Flexbox
      */
     .flex\@#{$suffix} { display: flex }
