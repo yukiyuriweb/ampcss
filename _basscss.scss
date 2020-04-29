@@ -198,7 +198,7 @@
 }
 
 // 親要素で均等割を指定する場合
-@for $i from 1 through $grids {
+@for $i from 1 through $flex_grids {
   .flex-grid-1-#{$i} {
     > * {
       width: (100% / $i);
@@ -330,15 +330,17 @@
  * Custom Media Queries
  * ----------------------------------------------------------------------
  */
-
-@each $suffix, $break-point in $break-points {
-  @media (min-width: breakpoint($suffix)) {
+@each $suffix, $max_width in $max_widths {
+  @media (max-width: max_width($suffix)) {
     /**
      * Visibility
      */
-    .hidden\@#{$suffix} { display: none }
-    .visible\@#{$suffix} { display: block }
+    .hidden-\@#{$suffix} { display: none }
+  }
+}
 
+@each $suffix, $min_width in $min_widths {
+  @media (min-width: min_width($suffix)) {
     /**
      * Flexbox
      */
@@ -400,7 +402,7 @@
       }
     }
     
-    @for $i from 1 through $grids {
+    @for $i from 1 through $flex_grids {
       .flex-grid-1-#{$i}\@#{$suffix} {
         > * {
           width: (100% / $i);
@@ -486,10 +488,10 @@
 .container {
   margin-left: auto;
   margin-right: auto;
-  max-width: $slide-max-width-l;
-  &.ws {max-width: breakpoint('s')}
-  &.wm {max-width: breakpoint('m')}
-  &.wl {max-width: breakpoint('l')}
+  max-width: $slide_max_width_l;
+  &.ws {max-width: max_width('s')}
+  &.wm {max-width: max_width('m')}
+  &.wl {max-width: max_width('l')}
   &.w500 {max-width: 500px}
   &.w600 {max-width: 600px}
   &.w700 {max-width: 700px}

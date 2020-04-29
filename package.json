@@ -1,6 +1,6 @@
 {
   "name": "@yukiyuriweb/ampcss",
-  "version": "4.5.0",
+  "version": "5.0.0",
   "description": "Low-level CSS toolkit for AMP HTML",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
@@ -10,7 +10,8 @@
     "url": "git://github.com/yukiyuriweb/ampcss.git"
   },
   "scripts": {
-    "build": "sass ampcss.scss dist/ampcss.css --style compressed"
+    "compile": "sass ampcss.scss dist/ampcss.css",
+    "build": "sass ampcss.scss dist/ampcss.css --style compressed; AUTOPREFIXER_GRID=autoplace postcss --no-map dist/ampcss.css --use autoprefixer -o dist/ampcss.css"
   },
   "author": "YUKiYURi WEB <info@yukiyuriweb.com>",
   "license": "MIT",
@@ -27,6 +28,8 @@
   },
   "homepage": "https://github.com/yukiyuriweb/ampcss",
   "devDependencies": {
-    "dart-sass": "^1.22.1"
+    "autoprefixer": "^9.7.6",
+    "dart-sass": "^1.25.0",
+    "postcss-cli": "^7.1.1"
   }
 }

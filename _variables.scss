@@ -1,21 +1,37 @@
 /**
- * Break points
+ * min-width for break points.
  */
-$break-points: (
+$min_widths: (
   's':  640px,
   'm':  960px,
   'l': 1280px,
-);
+) !default;
 
 /**
- * Utility function for break points
+ * Utility function for min-width.
  */
-@function breakpoint($key) {
-  @return map-get($break-points, $key);
+@function min_width($key) {
+  @return map-get($min_widths, $key);
 }
 
 /**
- * Margin / Padding values
+ * min-width for break points.
+ */
+$max_widths: (
+  's': min_width('s') - 1px,
+  'm': min_width('m') - 1px,
+  'l': min_width('l') - 1px,
+) !default;
+
+/**
+ * Utility function for max-width.
+ */
+@function max_width($key) {
+  @return map-get($max_widths, $key);
+}
+
+/**
+ * Margin / Padding values.
  */
 $margin-padding-values: (
   '1': .5rem,
@@ -23,19 +39,19 @@ $margin-padding-values: (
   '3': 2rem,
   '4': 4rem,
   '5': 8rem,
-);
+) !default;
 
 /**
- * Max width of slides
+ * Max width of slides.
  */
-$slide-max-width-l: 1280px;
+$slide_max_width_l: 1280px !default;
 
 /**
- * Columns
+ * # of columns.
  */
-$columns: 12;
+$columns: 12 !default;
 
 /**
- * Grids
+ * # of grids for flexbox grid.
  */
-$grids: 6;
+$flex_grids: 6 !default;
