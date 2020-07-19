@@ -1,6 +1,6 @@
 {
   "name": "@yukiyuriweb/ampcss",
-  "version": "5.1.0",
+  "version": "5.1.1",
   "description": "Low-level CSS toolkit for AMP HTML",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
@@ -28,7 +28,7 @@
   },
   "homepage": "https://github.com/yukiyuriweb/ampcss",
   "devDependencies": {
-    "autoprefixer": "^9.7.6",
+    "autoprefixer": "^9.8.5",
     "dart-sass": "^1.25.0",
     "postcss-cli": "^7.1.1"
   }
