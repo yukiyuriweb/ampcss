@@ -1,6 +1,6 @@
 {
   "name": "@yukiyuriweb/ampcss",
-  "version": "5.1.2",
+  "version": "5.1.3",
   "description": "Low-level CSS toolkit for AMP HTML",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
