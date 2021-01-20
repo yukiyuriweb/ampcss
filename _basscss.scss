@@ -439,6 +439,18 @@
       }
     }
 
+    .flex-row-alternate\@#{$suffix} {
+      >.flex-row\@#{$suffix}:nth-of-type(even) {
+        flex-direction: row-reverse;
+      }
+    }
+
+    .flex-column-alternate\@#{$suffix} {
+      >.flex-column\@#{$suffix}:nth-of-type(even) {
+        flex-direction: column-reverse;
+      }
+    }
+
     /**
      * ----------------------------------------------------------------------
      * Margin / Padding
