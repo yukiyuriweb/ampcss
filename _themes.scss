@@ -1,0 +1,28 @@
+// Simple function to retreive colors in the $colors map.
+// e.g. `background-color: color(gray-50);`
+@function color($key) {
+  @if map-has-key($colors, $key) {
+    @return map-get($colors, $key);
+  }
+  @warn "Unknown `#{$key}` in $colors.";
+  @return null;
+}
+
+// Generate utility classes
+// e.g. `.color-gray-50` or `.background-gray-50`
+@mixin color-utilities($property: "color") {
+  @each $name,
+  $hex in $colors {
+    &-#{"" + $name} {
+      #{$property}: $hex;
+    }
+  }
+}
+
+.color {
+  @include color-utilities(); // e.g. `.color-gray-50`
+}
+
+.background {
+  @include color-utilities(background); // e.g.  `.background-gray-50`
+}

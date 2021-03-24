@@ -25,6 +25,7 @@ SCSS:
 @import 'path/to/node_modules/@yukiyuriweb/ampcss/sanitize';
 @import 'path/to/node_modules/@yukiyuriweb/ampcss/variables';
 @import 'path/to/node_modules/@yukiyuriweb/ampcss/basscss';
+@import 'path/to/node_modules/@yukiyuriweb/ampcss/themes';
 ```
 
 You can override `_variables.scss` by importing the scss file before importing `_basscss.scss`.
