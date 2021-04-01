@@ -13,9 +13,12 @@
 
 .font-family-inherit { font-family: inherit }
 .font-size-inherit { font-size: inherit }
-.text-decoration-none { text-decoration: none }
 
-.hover-inherit:hover { color: inherit }
+.text-decoration-none { text-decoration: none }
+.text-decoration-underline-on-hover:hover { text-decoration: underline }
+
+.color-inherit { color: inherit }
+.color-inherit-on-hover:hover { color: inherit }
 
 .bold    { font-weight: bold }
 .regular { font-weight: normal }
@@ -406,7 +409,7 @@
         }
       }
     }
-    
+
     @for $i from 1 through $flex_grids {
       .flex-grid-1-#{$i}\@#{$suffix} {
         > * {
